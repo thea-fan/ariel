@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS replies (
 CREATE TABLE IF NOT EXISTS uploads (
     id SERIAL PRIMARY KEY,
     url TEXT,
-    reply_id INT REFERENCES replies(reply_id) ON DELETE CASCADE
+    reply_ref INT REFERENCES replies(reply_id) ON DELETE CASCADE
 );
 
 CREATE OR REPLACE FUNCTION trigger_set_timestamp()

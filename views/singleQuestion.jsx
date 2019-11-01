@@ -70,6 +70,7 @@ class SingleQuestion extends React.Component {
 
     } else {
 
+        console.log(this.props.replyDetails);
         reply = this.props.replyDetails.filter(reply => reply.reply_text !== null).map((reply, index) =>{
 
             let reply_username = "";
@@ -91,9 +92,9 @@ class SingleQuestion extends React.Component {
                 updatedTime;
             }
 
-            let markAsSolution = ""
+            let markAsSolution = "";
             if (parseInt(question.user_id) === parseInt(this.props.status.user_id)){
-
+                console.log(reply);
                 if (question.answer_id === reply.reply_id){
                     markAsSolution = (
                         <div>
@@ -203,20 +204,24 @@ class SingleQuestion extends React.Component {
                 <div className={'px-2 pb-4 comment-height'}>
                     <form method={'POST'} action={'/activity/'+this.props.Id+'/reply'} enctype="multipart/form-data">
                         <div class="reply-form">
-                            <div class="input-group mb-3">
-                            <textarea name="reply_text" type="text" className="col mb-0" rows="3" placeholder="Your reply" required/>
-                            </div>
-                            <div className="file-upload">
-                                <div className="file-select">
-                                    <div className="file-select-button" id="fileName">
-                                        <i className="fas fa-paperclip"></i>
+                            <div class="input-group">
+                                <div class="col-11">
+                                    <textarea name="reply_text" type="text" className="col mb-0" rows="3" placeholder="Your reply" required/>
+                                    <div className="file-upload">
+                                        <div className="file-select">
+                                            <div className="file-select-button" id="fileName">
+                                                <i className="fas fa-paperclip"></i>
+                                            </div>
+                                            <div className="file-select-name" id="noFile">Add attachment</div>
+                                            <input name="reply_upload" type="file" id="myFile" accept="image/gif, image/jpeg, image/png, application/pdf"/>
+                                        </div>
                                     </div>
-                                    <div className="file-select-name" id="noFile">Add attachment</div>
-                                    <input name="reply_upload" type="file" id="myFile" accept="image/gif, image/jpeg, image/png, application/pdf"/>
+                                </div>
+                                <div className="col-1 input-group-append">
+                                    <button className="btn btn-dark" type="submit">Submit</button>
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-dark" type="submit">Submit</button>
                     </form>
                 </div>
                 {reply}
