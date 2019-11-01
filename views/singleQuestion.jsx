@@ -1,5 +1,4 @@
 var React = require('react');
-var React = require('react');
 var Layout;
 var memberNav = require('./components/layout.jsx');
 var nonMemberNav = require('./login/rootLayout.jsx');
@@ -163,13 +162,12 @@ class SingleQuestion extends React.Component {
                     </div>
                 </div>
                 <div className={'px-2 pb-4 comment-height'}>
-                    <form method={'POST'} action={'/activity/'+this.props.Id+'/reply'}>
+                    <form method={'POST'} action={'/activity/'+this.props.Id+'/reply'} enctype="multipart/form-data">
                       <div class="input-group mb-3">
                         <textarea name="reply_text" type="text" className="col mb-0" rows="3" placeholder="Your reply" required/>
-                        <div class="input-group-append">
-                            <button class="btn btn-dark" type="submit">Submit</button>
-                          </div>
-                        </div>
+                      </div>
+                        <input name="reply_upload" type="file" id="myFile" accept="image/gif, image/jpeg, image/png, application/pdf"/>
+                        <button class="btn btn-dark" type="submit">Submit</button>
                     </form>
                 </div>
                 {reply}

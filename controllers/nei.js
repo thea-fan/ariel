@@ -2,6 +2,14 @@ var sha256 = require('js-sha256');
 const SALT = "project two gogogo";
 const cookieParser = require('cookie-parser')
 
+const cloudinary = require('cloudinary');
+const cloudinaryConfig = process.env.CLOUDINARY_URL || require("../cloudinary-key.json");
+cloudinary.config(cloudinaryConfig);
+
+const multer  = require('multer');
+const upload = multer({
+    dest: './uploads/'
+});
 module.exports = (db) => {
 
   /**
@@ -330,17 +338,36 @@ module.exports = (db) => {
     };
 
 //app.POST (new - post new reply)
-    let newReplyController = (request, response) =>{
-        let questionID = request.params.id;
+    let newReplyController = async function (request, response) {
+        try {
+            let questionID = request.params.id;
+            console.log(request.body);
+            let uploadedFile = request.file? await cloudinary.v2.uploader.upload(request.file.path): null;
+            db.nei.addReply(request.body, questionID, request.cookies, (err, result) => {
+                if (err) {
+                    response.send(err)
 
-        db.nei.addReply(request.body, questionID, request.cookies, (err, result) => {
-            if (err) {
-                response.send(err)
+                } else {
+                    let replyID = result.rows[0].reply_id;
+                    if (result) {
+	                    db.nei.uploadFile(uploadedFile.secure_url, replyID, (err, result) => {
+		                    if (err) {
+			                    response.send(err)
 
-            } else {
-                response.redirect('/activity/'+ questionID)
-            };
-        });
+		                    } else {
+			                    response.redirect('/activity/' + questionID)
+		                    }
+	                    });
+                    }
+                    else {
+	                    response.redirect('/activity/' + questionID);
+                    }
+                };
+            });
+        }
+        catch (error){
+            console.log(error)
+        }
     };
 
 //app.GET (default home - not login)
