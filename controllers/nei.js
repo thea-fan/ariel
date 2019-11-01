@@ -420,7 +420,7 @@ module.exports = (db) => {
 
                 } else {
                     let replyID = result.rows[0].reply_id;
-                    if (result) {
+                    if (uploadedFile) {
 	                    db.nei.uploadFile(uploadedFile.secure_url, replyID, (err, result) => {
 		                    if (err) {
 			                    response.send(err)

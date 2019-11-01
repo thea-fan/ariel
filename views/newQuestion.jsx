@@ -26,7 +26,7 @@ class newQuestion extends React.Component {
                             <div className="col-2 text-center mt-0">
                                 <label>Description</label>
                             </div>
-                            <textarea className={"col-8 offset-1 "} placeholder={'Description of the issue'} rows={'5'} name={'question_text'} ></textarea>
+                            <textarea className={"col-8 offset-1 "} placeholder={'Description of the issue'} rows={'10'} name={'question_text'} ></textarea>
                           </div>
                           <div className={"form-group row"}>
                             <div className="col-3 text-center my-auto">
@@ -47,7 +47,7 @@ class newQuestion extends React.Component {
                             </select>
                           </div>
                           <div className="text-right">
-                            <button type={"submit"} class={"btn btn-dark"}>Post Question</button>
+                            <button type={"submit"} class={"btn btn-dark"}>Post Issue</button>
                             </div>
                         </form>
                     </div>
