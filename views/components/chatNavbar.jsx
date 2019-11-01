@@ -31,8 +31,15 @@ class ChatNavbar extends React.Component {
                                 <span>Chat</span>
                             </a>
                         </li>
-                        <li class="sidebar">
-                            <a href = "/logout">
+                        <img id="chat-img" className = "chat-screen" src = "/img/1.png"/>
+                        <div class="input-group mb-3 chat-margin">
+                          <input type="text" class="form-control pl-20" id="chat-textbox" placeholder="Your reply"/>
+                          <div class="input-group-append">
+                            <span class="input-group-text" id="chat-send">Send</span>
+                          </div>
+                        </div>
+                        <li class="sidebar col bg-white logout-margin">
+                            <a className = "pt-0 pl-0" href = "/logout">
                                  <i class="fa fa-power-off"></i>
                                 <span>Logout</span>
                             </a>

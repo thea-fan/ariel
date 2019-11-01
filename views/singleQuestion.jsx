@@ -93,6 +93,8 @@ class SingleQuestion extends React.Component {
 
             let markAsSolution = ""
             if (parseInt(question.user_id) === parseInt(this.props.status.user_id)){
+                console.log('99999999',question.answer_id )
+                console.log('99999999',reply.reply_id )
 
                 if (question.answer_id === reply.reply_id){
                     markAsSolution = (

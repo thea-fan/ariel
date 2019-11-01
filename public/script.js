@@ -53,3 +53,17 @@ $('#myFile').bind('change', function () {
     $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
   }
 });
+
+let chatPic = 1;
+$("#chat-send").on('click', function(){
+    changePic()
+})
+$("#chat-img").on('click', function(){
+    changePic()
+})
+
+function changePic () {
+    chatPic++;
+    $(".chat-screen").attr("src",`/img/${chatPic}.png`);
+    $("#chat-textbox").val("");
+}
