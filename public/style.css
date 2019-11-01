@@ -2,46 +2,6 @@ body{
 	font-family: 'Hind Madurai', sans-serif;
 }
 
-header {
- position: relative;
- background-color: black;
- height: 75vh;
- min-height: 25rem;
- width: 100%;
- overflow: hidden;
-}
-
-header video {
- position: absolute;
- top: 50%;
- left: 50%;
- min-width: 100%;
- min-height: 100%;
- width: auto;
- height: auto;
- z-index: 0;
- -ms-transform: translateX(-50%) translateY(-50%);
- -moz-transform: translateX(-50%) translateY(-50%);
- -webkit-transform: translateX(-50%) translateY(-50%);
- transform: translateX(-50%) translateY(-50%);
-}
-
-header .container {
- position: relative;
- z-index: 2;
-}
-
-header .overlay {
- position: absolute;
- top: 0;
- left: 0;
- height: 100%;
- width: 100%;
- background-color: black;
- opacity: 0.5;
- z-index: 1;
-}
-
 .profile-header{
 	background-image: linear-gradient(to right, #E91E63, #FFC107, #FFEB3B);
   -webkit-background-clip: text;
@@ -58,8 +18,6 @@ header .overlay {
 	color: black;
 }
 
-
-
 .category-card{
 	border-radius: 20px;
 	height: 10rem;
@@ -71,30 +29,6 @@ header .overlay {
 	background-color: #ffffffc7;
 	border: 1px solid #ffffffc7;
 	border-radius: 20px;
-}
-
-.food{
-	background-image: url('https://downtowngallery.com.sg/images/uploads/concepts-social-kitchen-m-1.jpg')
-}
-
-.exercise{
-	background-image: url('https://media.timeout.com/images/105399514/630/472/image.jpg')
-}
-
-.pets{
-	background-image: url('https://trupanion.com/-/media/trupanion/images/hero/desktop/hero-dog-kitten-mobile.jpg')
-}
-
-.chill{
-	background-image: url('https://imgix.bustle.com/uploads/image/2019/1/18/c3def9ff-df29-4463-8c14-ad1bc89188e5-boar-game-for-large-groups.jpg?w=970&h=546&fit=crop&crop=faces&auto=format&q=70')
-}
-
-.request{
-	background-image: url('http://www.asiaone.com/sites/default/files/original_images/Apr2014/20140421_neighbours_bh.jpg')
-}
-
-.shopping{
-	background-image: url('https://www.visitsingapore.com/festivals-events-singapore/annual-highlights/great-singapore-sale/_jcr_content/par-carousel/carousel_detailpage/carousel/item_1.thumbnail.carousel-img.740.416.jpg')
 }
 
 .card-date{
@@ -112,14 +46,6 @@ header .overlay {
 
 .category-card h1 {
 	font-size: 2rem;
-}
-
-.homepage-banner{
-	height: 18rem;
-  background-image: url('http://panoramic.hgzjromq.maxcdn-edge.com/wp-content/uploads/2017/04/ROCHER-CENTRE-1-900x300.jpg');
-  background-size: cover;
-  background-position: center;
-  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
 }
 
 .homepage-searchbar{
@@ -157,14 +83,6 @@ header .overlay {
 	margin-top: 53px;
 }
 
-.activity-banner{
-	height: 10rem;
-}
-
-.activity-banner h1{
-	font-size: 3.5rem;
-}
-
 .bordered{
 	border: 1px solid rgba(0,0,0,.125);
 }
@@ -186,20 +104,10 @@ header .overlay {
 	-webkit-text-fill-color: white;
 }
 
-.attendance-button{
-	width: 80px;
-	height: 35px;
-}
-
 .new-input{
 	height: 2.5rem;
 }
 
-.bg-light{
-	background: white !important;
-	padding: 0 16px;
-	border-bottom: 1px solid #ece7e7;
-}
 
 a.navbar-brand{
 	font-family: 'Righteous', cursive;
@@ -213,15 +121,6 @@ a.navbar-brand{
 	width: 2.5rem;
 	margin-right: 2px;
 }
-
-
-
-.footer-copyright{
-	margin-top: 2rem;
-	background-color: black;
-	color: white;
-}
-
 
 
 .myButton {
@@ -253,14 +152,11 @@ a.navbar-brand{
 
 
 
-@media (pointer: coarse) and (hover: none) {
-  header {
-    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
-  }
-  header video {
-    display: none;
-  }
-}
+
+
+
+
+
 
 .reviews {
 	border: 1px solid grey;
@@ -302,6 +198,14 @@ a.navbar-brand{
 	max-height:5vh;
 }
 
+.navbar-logo{
+	max-width: 16vh;
+}
+
+.font-large{
+	font-size: large;
+}
+
 .badge-equipment{
 	color: #051b6f;
   background-color: #d3ebef;
@@ -341,6 +245,8 @@ a:link {
 .star-solution{
 	color: #ffbd00;
 }
+
+
 
 
 
@@ -462,6 +368,7 @@ body {
   top: 0;
   left: -300px;
   z-index: 999;
+  box-shadow: 0px -1px 5px #bcb7b7;
 }
 
 .sidebar-wrapper ul {
@@ -477,9 +384,7 @@ body {
 /*--------------------sidebar-brand----------------------*/
 
 .sidebar-wrapper .sidebar-brand {
-  padding: 10px 20px;
   display: flex;
-  align-items: center;
 }
 
 .sidebar-wrapper .sidebar-brand > a {
@@ -522,8 +427,8 @@ body {
   display: block;
 }
 
-.sidebar-wrapper .sidebar-header .user-info .user-role {
-  font-size: 12px;
+.sidebar-wrapper .sidebar-header .user-role {
+  font-size: 16px;
 }
 
 .sidebar-wrapper .sidebar-header .user-info .user-status {
@@ -569,7 +474,7 @@ body {
 
 .sidebar-wrapper .sidebar-menu ul li a i {
   margin-right: 10px;
-  font-size: 12px;
+  font-size: 1rem;
   width: 30px;
   height: 30px;
   line-height: 30px;
@@ -744,13 +649,12 @@ body {
 /*-----------------------------chiller-theme-------------------------------------------------*/
 
 .chiller-theme .sidebar-wrapper {
-    background: #31353D;
+    background: #fff;
 }
 
-.chiller-theme .sidebar-wrapper .sidebar-header,
 .chiller-theme .sidebar-wrapper .sidebar-search,
 .chiller-theme .sidebar-wrapper .sidebar-menu {
-    border-top: 1px solid #3a3f48;
+    border-top: 1px solid #d3d3d3;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
@@ -766,7 +670,7 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-brand>a,
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
 .chiller-theme .sidebar-footer>a {
-    color: #818896;
+    color: #383b41;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover>a,
@@ -774,11 +678,12 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-header .user-info,
 .chiller-theme .sidebar-wrapper .sidebar-brand>a:hover,
 .chiller-theme .sidebar-footer>a:hover i {
-    color: #b8bfce;
+    color: #383b41;
 }
 
 .page-wrapper.chiller-theme.toggled #close-sidebar {
     color: #bdbdbd;
+    padding-right: 8px;
 }
 
 .page-wrapper.chiller-theme.toggled #close-sidebar:hover {
@@ -797,17 +702,16 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
 .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
-    background: #3a3f48;
+    background: #fff;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
-    color: #6c7b88;
+    color: #383b41;
 }
 
 .chiller-theme .sidebar-footer {
-    background: #3a3f48;
-    box-shadow: 0px -1px 5px #282c33;
-    border-top: 1px solid #464a52;
+    background: #fafafa;
+    box-shadow: 0px -1px 5px #e1e1e1;
 }
 
 .chiller-theme .sidebar-footer>a:first-child {

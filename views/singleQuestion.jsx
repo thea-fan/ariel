@@ -146,7 +146,7 @@ class SingleQuestion extends React.Component {
             return (
                     <div className={'mt-2 row'}>
                         <div className={'col-2 text-center'}>
-                            <img class="img-responsive img-rounded profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                            <img class="profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
                                 alt="User picture"/>
                             <span class = "text-capitalize">{reply_username}</span>
                         </div>
