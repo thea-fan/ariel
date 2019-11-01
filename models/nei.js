@@ -227,7 +227,7 @@ module.exports = (dbPoolInstance) => {
 
     let allEquipment = (cookies, callback) => {
 
-        let query = "SELECT qn_id, question_title, questions.equipment, user_id, count from (select equipment, count(DISTINCT equipment) FROM questions GROUP BY equipment) AS foo INNER JOIN questions ON foo.equipment = questions.equipment LEFT JOIN users ON users.id = user_id ORDER BY created_date DESC";
+        let query = "SELECT questions.equipment, user_id, count from (select equipment, count (equipment) FROM questions GROUP BY equipment) AS foo INNER JOIN questions ON foo.equipment = questions.equipment LEFT JOIN users ON users.id = user_id ORDER BY created_date DESC";
 
         dbPoolInstance.query(query, (error, result) => {
 
