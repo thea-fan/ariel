@@ -150,7 +150,7 @@ module.exports = (db) => {
                     specificQuestion : result.questionDetails,
                     Id : questionId,
                     status : request.cookies
-                }
+                };
 
                 response.render('singleQuestion',data);
             }

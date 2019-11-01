@@ -178,19 +178,19 @@ module.exports = (dbPoolInstance) => {
                 let data = {
                     questionDetails : questionDetails.rows
                 }
-                    let reply = "select * from replies LEFT JOIN users on replied_user_id = users.id where question_id = $1 ORDER by reply_date ASC ";
-                    let value = [question];
+                let reply = "select * from replies LEFT JOIN users on replied_user_id = users.id LEFT JOIN uploads on replies.reply_id = uploads.reply_id where question_id = $1 ORDER by reply_date ASC ";
+                let value = [question];
 
-                    dbPoolInstance.query(reply, value, (error, replyDetails) => {
-                        if( error ){
-                            callback(error, null);
+                dbPoolInstance.query(reply, value, (error, replyDetails) => {
+                    if( error ){
+                        callback(error, null);
 
-                        } else {
-                            data.replyDetails = replyDetails.rows;
-                            callback(null, data);
-                        }
-                    });
-                }
+                    } else {
+                        data.replyDetails = replyDetails.rows;
+                        callback(null, data);
+                    }
+                });
+            }
         });
     }
 
