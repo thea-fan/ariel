@@ -1,5 +1,4 @@
 var React = require('react');
-var React = require('react');
 var Layout;
 var memberNav = require('./components/layout.jsx');
 var nonMemberNav = require('./login/rootLayout.jsx');
@@ -143,6 +142,8 @@ class SingleQuestion extends React.Component {
                 reply_username = reply.first_name.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); }) + " " + reply.last_name.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); });
             }
 
+            let url = reply.url? (<a className="reply_upload" href={reply.url} target="_blank"><i
+                className="fas fa-file"></i> View Attachment</a>): null;
             return (
                     <div className={'mt-2 row'}>
                         <div className={'col-2 text-center'}>
@@ -151,18 +152,18 @@ class SingleQuestion extends React.Component {
                             <span class = "text-capitalize">{reply_username}</span>
                         </div>
 
-                        <div className={'col-10 d-flex flex-column justify-content-center pb-2 border-bottom comment-height'}>
+                        <div className={'col-10 d-flex flex-column justify-content-center py-2 border-bottom comment-height'}>
                             <div className="row">
-                                <h6 className="col-10 pb-2">{reply.reply_text.charAt(0).toUpperCase() + reply.reply_text.slice(1)}</h6>
-                                {markAsSolution}
-                            </div>
-                             <div className="row">
-                                <div className = "col-10">
-                                    <small> Replied on {replyTime}</small>
-                                    {updatedTime}
+                                <div className="col-10 pb-2">
+                                    <h6 className="pb-2">{reply.reply_text.charAt(0).toUpperCase() + reply.reply_text.slice(1)}</h6>
+                                     {markAsSolution}
+                                     {url}
                                 </div>
                                 {editReply}
+
                             </div>
+                            <small className="mt-2"> Replied on {replyTime} </small>
+                            {updatedTime}
                         </div>
                      </div>
             )
@@ -174,7 +175,7 @@ class SingleQuestion extends React.Component {
             <div class = "bg-white pb-4 col-8 offset-2 border rounded mt-4 px-5">
                 <div class = "row mt-5 pb-3 border-bottom">
                     <div class = "col-1">
-                        <img class="img-responsive img-rounded profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                        <img class="img-rounded profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
                             alt="User picture"/>
                     </div>
                     <div className = "offset-1 col-10">
@@ -190,23 +191,32 @@ class SingleQuestion extends React.Component {
                 </div>
                 <div class = "row px-4 pb-4 mb-4 justify-content-center border-bottom">
 
-                    <div class = "mt-4 pr-3">
+                    <div class = "col-12 mt-4 pr-3">
                         <div>
                             <h6 className = "mb-3">{question.question_text.charAt(0).toUpperCase() + question.question_text.slice(1)}</h6>
                             <div>
-                                <img className = "single-question-photo mx-auto" src={question.question_photo}/>
+                                <img className = "img-fluid single-question-photo mx-auto" src={question.question_photo}/>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className={'px-2 pb-4 comment-height'}>
-                    <form method={'POST'} action={'/activity/'+this.props.Id+'/reply'}>
-                      <div class="input-group mb-3">
-                        <textarea name="reply_text" type="text" className="col mb-0" rows="3" placeholder="Your reply" required/>
-                        <div class="input-group-append">
-                            <button class="btn btn-dark" type="submit">Submit</button>
-                          </div>
+                    <form method={'POST'} action={'/activity/'+this.props.Id+'/reply'} enctype="multipart/form-data">
+                        <div class="reply-form">
+                            <div class="input-group mb-3">
+                            <textarea name="reply_text" type="text" className="col mb-0" rows="3" placeholder="Your reply" required/>
+                            </div>
+                            <div className="file-upload">
+                                <div className="file-select">
+                                    <div className="file-select-button" id="fileName">
+                                        <i className="fas fa-paperclip"></i>
+                                    </div>
+                                    <div className="file-select-name" id="noFile">Add attachment</div>
+                                    <input name="reply_upload" type="file" id="myFile" accept="image/gif, image/jpeg, image/png, application/pdf"/>
+                                </div>
+                            </div>
                         </div>
+                        <button class="btn btn-dark" type="submit">Submit</button>
                     </form>
                 </div>
                 {reply}

@@ -1,3 +1,7 @@
+const multer  = require('multer');
+const upload = multer({
+  dest: './uploads/'
+});
 module.exports = (app, allModels) => {
 
 
@@ -25,7 +29,7 @@ module.exports = (app, allModels) => {
     app.get('/equipment/:name', neiController.singleVessel);
 
 //Reply
-    app.post('/activity/:id/reply/', neiController.newReply);
+    app.post('/activity/:id/reply/',upload.single('reply_upload'), neiController.newReply);
     app.put('/activity/:id/reply/:reply_id/edit', neiController.editReply);
     app.delete('/activity/:id/reply/:reply_id', neiController.deleteReply);
     app.put('/activity/:id/reply/:reply_id/mark/edit', neiController.markAsSolution);
@@ -44,9 +48,6 @@ module.exports = (app, allModels) => {
     app.get('/logout', neiController.logout);
     app.get('/', neiController.root);
     app.get('/home', neiController.home);
-
-
-
 
 
     app.post('/activity/:id', neiController.attend);
