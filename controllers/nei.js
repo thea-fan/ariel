@@ -464,17 +464,18 @@ module.exports = (db) => {
 
 //app.GET (chat)
     let chatController = (request, response) => {
-        db.nei.allEquipment(request.cookies, (err, result) => {
+
+         db.nei.showAllQuestions(request.body, request.cookies, (err, result) => {
             if (err) {
                 response.send(err)
             }
+
             else {
                 let data = {
-                    equipmentList : result.rows,
-                    status : request.cookies
+                    allQuestions : result.rows,
+                    status: request.cookies
                 }
-
-                response.render('chat',data);
+                response.render('chat', data);
             }
         });
     };
