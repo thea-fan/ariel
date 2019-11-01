@@ -178,19 +178,19 @@ module.exports = (dbPoolInstance) => {
                 let data = {
                     questionDetails : questionDetails.rows
                 }
-                    let reply = "select * from replies LEFT JOIN users on replied_user_id = users.id where question_id = $1 ORDER by reply_date ASC ";
-                    let value = [question];
+                let reply = "select * from replies LEFT JOIN users on replied_user_id = users.id LEFT JOIN uploads on replies.reply_id = uploads.reply_id where question_id = $1 ORDER by reply_date ASC ";
+                let value = [question];
 
-                    dbPoolInstance.query(reply, value, (error, replyDetails) => {
-                        if( error ){
-                            callback(error, null);
+                dbPoolInstance.query(reply, value, (error, replyDetails) => {
+                    if( error ){
+                        callback(error, null);
 
-                        } else {
-                            data.replyDetails = replyDetails.rows;
-                            callback(null, data);
-                        }
-                    });
-                }
+                    } else {
+                        data.replyDetails = replyDetails.rows;
+                        callback(null, data);
+                    }
+                });
+            }
         });
     }
 
@@ -227,7 +227,7 @@ module.exports = (dbPoolInstance) => {
 
     let allEquipment = (cookies, callback) => {
 
-        let query = "SELECT qn_id, question_title, questions.equipment, user_id, count from (select equipment, count(DISTINCT equipment) FROM questions GROUP BY equipment) AS foo INNER JOIN questions ON foo.equipment = questions.equipment LEFT JOIN users ON users.id = user_id ORDER BY created_date DESC";
+        let query = "SELECT qn_id, question_title, questions.equipment, user_id, count from (select equipment, count(equipment) FROM questions GROUP BY equipment) AS foo INNER JOIN questions ON foo.equipment = questions.equipment LEFT JOIN users ON users.id = user_id ORDER BY created_date DESC";
 
         dbPoolInstance.query(query, (error, result) => {
 
@@ -333,22 +333,28 @@ module.exports = (dbPoolInstance) => {
 
     let addReply = (question, Id, cookies, callback) => {
         let text = "INSERT INTO replies (replied_user_id, question_id, reply_text) VALUES ($1, $2, $3) RETURNING reply_id";
-        let values =[parseInt(cookies.user_id), Id, question.reply_text]
+        let values =[parseInt(cookies.user_id), Id, question.reply_text];
 
         dbPoolInstance.query(text, values, (error, result) => {
-
             if( error ){
-            callback(error, null);
-
+                callback(error, null);
             } else {
                 callback(null, result);
             }
         });
     }
 
-
-
-
+    let uploadFile = (fileUrl, replyID, callback) => {
+        let text = "INSERT INTO uploads (url, reply_id) VALUES ($1, $2) RETURNING id";
+        let values =[fileUrl, replyID];
+        dbPoolInstance.query(text, values, (error, result) => {
+            if ( error ) {
+                callback(error, null);
+            } else {
+                callback(null, result);
+            }
+        });
+    }
 
   return {
     addReply,
@@ -370,5 +376,6 @@ module.exports = (dbPoolInstance) => {
     postedActivity,
     registerUser,
     loginUser,
+    uploadFile
   };
 };
