@@ -9,13 +9,13 @@ class AllEquipment extends React.Component {
     let equipmentArray = [];
     console.log(this.props.equipmentList);
     this.props.equipmentList.map(item => {
-        equipmentArray.push(item.equipment)
+        equipmentArray.push(item)
     });
     equipmentArray = [...new Set(equipmentArray)];
 
     const equipment = equipmentArray.map(equipment =>{
 
-        let name = equipment.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); })
+        let name = equipment.equipment.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); })
 
         return(
                  <div className = "category-card col-3 card card--hasShadow text-center p-0">
@@ -26,7 +26,7 @@ class AllEquipment extends React.Component {
                         <img className = "col-3 p-0" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP4_jgCfj1rGyeZwCX2tE2rgtxZLMWsArDzYCvP3d44B52jE9c&s"/>
                     </div>
                     <div className = "text-left mt-2 pl-4 ml-2" >
-                        <a className = "text-primary" href={"/equipment/" + equipment}>View issues</a>
+                        <a className = "text-primary" href={"/equipment/" + equipment.equipment}>View issues ({equipment.count})</a>
                     </div>
                 </div>
         )

@@ -8,14 +8,14 @@ class AllVessel extends React.Component {
 
     let vesselArray = [];
     this.props.vesselList.map(item => {
-        vesselArray.push(item.vessel);
+        vesselArray.push(item);
     });
 
     vesselArray = [...new Set(vesselArray)];
 
     const vessel = vesselArray.map(vessel =>{
 
-        let name = vessel.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); })
+        let name = vessel.vessel.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); })
 
         return(
                  <div className = "category-card col-3 card card--hasShadow text-center p-0">
@@ -26,7 +26,7 @@ class AllVessel extends React.Component {
                         <img className = "col-3 p-0" src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcPlGG9R-7YfDoQmAU3AS68xTvMrt7456xXFuOI6tZegVTgVi8g&s"/>
                     </div>
                     <div className = "text-left mt-2 pl-4 ml-2" >
-                        <a className = "text-primary" href={"/vessel/" + vessel}>View issues</a>
+                        <a className = "text-primary" href={"/vessel/" + vessel.vessel}>View issues ({vessel.count})</a>
                     </div>
                 </div>
         )

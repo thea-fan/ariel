@@ -24,9 +24,12 @@ module.exports = (app, allModels) => {
     app.get('/equipment', neiController.equipment);
     app.get('/equipment/:name', neiController.singleEquipment);
 
-//Equipment
+//Vessel
     app.get('/vessel', neiController.vessel);
-    app.get('/equipment/:name', neiController.singleVessel);
+    app.get('/vessel/:name', neiController.singleVessel);
+
+//Chat
+    app.get('/chat', neiController.chat);
 
 //Reply
     app.post('/activity/:id/reply/',upload.single('reply_upload'), neiController.newReply);
