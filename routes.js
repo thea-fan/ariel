@@ -24,10 +24,16 @@ module.exports = (app, allModels) => {
     app.get('/equipment', neiController.equipment);
     app.get('/equipment/:name', neiController.singleEquipment);
 
+//Equipment
+    app.get('/vessel', neiController.vessel);
+    app.get('/equipment/:name', neiController.singleVessel);
+
 //Reply
     app.post('/activity/:id/reply/',upload.single('reply_upload'), neiController.newReply);
     app.put('/activity/:id/reply/:reply_id/edit', neiController.editReply);
     app.delete('/activity/:id/reply/:reply_id', neiController.deleteReply);
+    app.put('/activity/:id/reply/:reply_id/mark/edit', neiController.markAsSolution);
+    app.put('/activity/:id/reply/:reply_id/unmark/edit', neiController.unmarkAsSolution);
 
 //Question
     app.get('/activity/new', neiController.newPost);

@@ -4,6 +4,7 @@ var memberNav = require('./components/layout.jsx');
 var nonMemberNav = require('./login/rootLayout.jsx');
 var EditQuestionModals = require('./questions/editQuestionModals.jsx');
 var EditReplyModals = require('./questions/editReplyModals.jsx');
+var SolutionMarkingModals = require('./questions/solutionMarkingModals.jsx');
 var moment = require('moment');
 
 class SingleQuestion extends React.Component {
@@ -78,6 +79,10 @@ class SingleQuestion extends React.Component {
             let editReplyModalButtonID = "#edit-reply-"+index;
             let deleteReplyModalID = "delete-reply-"+index;
             let deleteReplyModalButtonID = "#delete-reply-"+index;
+            let markSolutionModalID = "mark-solution-"+index;
+            let markSolutionButtonID = "#mark-solution-"+index;
+            let unmarkSolutionModalID = "unmark-solution-"+index;
+            let unmarkSolutionButtonID = "#unmark-solution-"+index;
 
             let updatedTime = "";
             if (moment(reply.reply_date).format('lll') !== moment(reply.updated_at).format('lll')){
@@ -86,21 +91,47 @@ class SingleQuestion extends React.Component {
                 updatedTime;
             }
 
+            let markAsSolution = ""
+            if (parseInt(question.user_id) === parseInt(this.props.status.user_id)){
+
+                if (question.answer_id === reply.reply_id){
+                    markAsSolution = (
+                        <div>
+                            <span class="badge badge-success" data-toggle="modal" data-target={unmarkSolutionButtonID}>Best Solution</span>
+                            <SolutionMarkingModals question_id = {this.props.Id} reply_id = {reply.reply_id} unmarkSolution = {unmarkSolutionModalID} />
+                        </div>
+                    )
+
+                } else {
+                    markAsSolution = (
+                        <div>
+                            <span data-toggle="modal" data-target={ markSolutionButtonID} class="badge badge-secondary">Mark as Solution</span>
+                            <SolutionMarkingModals question_id = {this.props.Id} reply_id = {reply.reply_id} markSolution = {markSolutionModalID} />
+                        </div>
+                    )
+                }
+
+            } else {
+                markAsSolution;
+            }
+
             let editReply = "";
             if (parseInt(reply.replied_user_id) === parseInt(this.props.status.user_id)){
+
                 editReply = (
-                <div>
-                    <div className = {'row mb-4 edit-question-controls'} >
-                        <span data-toggle="modal" data-target={editReplyModalButtonID} className={"mr-3"} >
-                            <i class="fas fa-edit"></i>
-                        </span>
-                        <span data-toggle="modal" data-target={deleteReplyModalButtonID}>
-                            <i class="fas fa-trash"></i>
-                        </span>
+                    <div>
+                        <div className = {'edit-question-controls'} >
+                            <span data-toggle="modal" data-target={editReplyModalButtonID} className={"mr-3"} >
+                                <i class="fas fa-edit"></i>
+                            </span>
+                            <span data-toggle="modal" data-target={deleteReplyModalButtonID}>
+                                <i class="fas fa-trash"></i>
+                            </span>
+                        </div>
+                        <EditReplyModals editID = {editReplyModalID} deleteID = {deleteReplyModalID} question_id ={reply.question_id} current_reply = {reply.reply_text} reply_id={reply.reply_id}/>
                     </div>
-                    <EditReplyModals editID = {editReplyModalID} deleteID = {deleteReplyModalID} question_id ={reply.question_id} current_reply = {reply.reply_text} reply_id={reply.reply_id}/>
-                </div>
-                )
+                );
+
             } else {
                 editReply;
             }
@@ -116,7 +147,7 @@ class SingleQuestion extends React.Component {
             return (
                     <div className={'mt-2 row'}>
                         <div className={'col-2 text-center'}>
-                            <img class="img-fluid img-rounded profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                            <img class="profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
                                 alt="User picture"/>
                             <span class = "text-capitalize">{reply_username}</span>
                         </div>
@@ -125,8 +156,8 @@ class SingleQuestion extends React.Component {
                             <div className="row">
                                 <div className="col-10 pb-2">
                                     <h6 className="pb-2">{reply.reply_text.charAt(0).toUpperCase() + reply.reply_text.slice(1)}</h6>
-
-                                    {url}
+                                     {markAsSolution}
+                                     {url}
                                 </div>
                                 {editReply}
 
@@ -148,6 +179,7 @@ class SingleQuestion extends React.Component {
                             alt="User picture"/>
                     </div>
                     <div className = "offset-1 col-10">
+                        <span className="vessel-name font-weight-bold">MT {question.vessel}</span>
                         <h3 class = "text-uppercase font-weight-bold mb-0 pr-2">{question.question_title}</h3>
                         <div className="row">
                             <h6 class="mb-1 text-capitalize pl-3">Equipment: <a href = {"/equipment/"+ question.equipment}> {question.equipment}</a> {questionStatus}</h6>

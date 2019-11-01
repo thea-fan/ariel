@@ -7,24 +7,19 @@ class Navbar extends React.Component {
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-                    <a href='/home'>Gotrix</a>
-                    <div id="close-sidebar">
-                         <i class="fas fa-times"></i>
-                    </div>
+                    <a href='/home'>
+                        <img src = "https://i.ibb.co/pzxTKtr/photo-2019-10-16-20-46-11.jpg" className = "mx-auto navbar-logo"/>
+                    </a>
                 </div>
                 <a href = '/profile'>
                     <div class="sidebar-header">
                         <div class="user-pic">
-                            <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-                            alt="User picture"/>
+                            <img class="profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                alt="User picture"/>
                         </div>
-                        <div class="user-info">
-                            <span class="user-name"><strong class="text-capitalize">{this.props.user_name}</strong></span>
+                        <div class="user-info mt-2">
+                            <span class="user-name"><strong class="text-capitalize font-large">{this.props.user_name}</strong></span>
                             <span class="user-role text-capitalize">{this.props.user_company} - {this.props.user_type}</span>
-                            <span class="user-status">
-                                <i class="fa fa-circle"></i>
-                                <span>Online</span>
-                          </span>
                         </div>
                     </div>
                 </a>
@@ -36,7 +31,7 @@ class Navbar extends React.Component {
                         <li class="sidebar">
                             <a href='/home'>
                                 <i class="fa fa-tachometer-alt"></i>
-                                <span>Issues</span>
+                                <span>All Issues</span>
                                 <span class="badge badge-pill badge-danger">3</span>
                             </a>
                         </li>
@@ -53,22 +48,23 @@ class Navbar extends React.Component {
                                 <span class="badge badge-pill badge-warning">New</span>
                             </a>
                         </li>
+                        <li class="sidebar">
+                            <a href="/vessel">
+                                <i class="fas fa-ship"></i>
+                                <span>Vessels</span>
+                            </a>
+                        </li>
+                        <li class="sidebar">
+                            <a href = "/logout">
+                                 <i class="fa fa-power-off"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="sidebar-footer">
-      <a href="#">
-        <i class="fa fa-bell"></i>
-      </a>
-      <a href="#">
-        <i class="fa fa-envelope"></i>
-      </a>
-      <a href='<%=edit_user_registration_path%>'>
-        <i class="fa fa-cog"></i>
-      </a>
-      <a href = "/logout">
-        <i class="fa fa-power-off"></i>
-      </a>
+                  <small className = "col my-1 text-muted text-center">Gotrix @ 2019 </small>
             </div>
         </nav>
     );

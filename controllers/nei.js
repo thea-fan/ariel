@@ -195,6 +195,44 @@ module.exports = (db) => {
     };
 
 
+//app.GET (view all vessels)
+    let vesselController = (request, response) => {
+
+        db.nei.allVessel(request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+            }
+            else {
+                let data = {
+                    vesselList : result.rows,
+                    status : request.cookies
+                }
+
+                response.render('allVessel',data);
+            }
+        });
+    };
+
+//app.GET (view single vessel)
+    let singleVesselController = (request, response) => {
+        let vessel = request.params.name;
+
+        db.nei.singleVessel(vessel, request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+            }
+            else {
+                let data = {
+                    questionList : result.rows,
+                    status : request.cookies
+                }
+
+                response.render('singleVessel',data);
+            }
+        });
+    };
+
+
 
 
 //app.POST (attend activity)
@@ -337,6 +375,39 @@ module.exports = (db) => {
 
     };
 
+//app.PUT (Delete reply as solution)
+    let  unmarkAsSolutionController = (request, response) => {
+        let questionID = parseInt(request.params.id);
+
+        db.nei.deleteAsSolution(questionID, request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+
+            } else {
+                response.redirect("/activity/"+ questionID);
+            }
+        });
+
+    };
+
+
+//app.PUT (Update reply as solution)
+    let markAsSolutionController = (request, response) => {
+
+        let replyID = parseInt(request.params.reply_id);
+        let questionID = parseInt(request.params.id);
+
+        db.nei.editAsSolution(replyID, questionID, request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+
+            } else {
+                response.redirect("/activity/"+ questionID);
+            }
+        });
+
+    };
+
 //app.POST (new - post new reply)
     let newReplyController = async function (request, response) {
         try {
@@ -416,9 +487,13 @@ module.exports = (db) => {
     question: questionController,
     equipment: equipmentController,
     singleEquipment: singleEquipmentController,
+    vessel: vesselController,
+    singleVessel: singleVesselController,
     newReply: newReplyController,
     editReply: editReplyController,
     deleteReply: deleteReplyController,
+    markAsSolution: markAsSolutionController,
+    unmarkAsSolution: unmarkAsSolutionController,
     newPost: newPostController,
     postNewPost: postNewPostController,
     logout: logoutController,

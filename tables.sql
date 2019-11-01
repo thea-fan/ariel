@@ -1,28 +1,13 @@
 
-
-CREATE TABLE IF NOT EXISTS activity (
-    id SERIAL PRIMARY KEY,
-    host_id INTEGER,
-    host_postal INTEGER,
-    type TEXT,
-    name TEXT,
-    max_pax INTEGER,
-    event_address TEXT,
-    event_postal INTEGER,
-    event_description TEXT,
-    event_photo TEXT,
-    event_date DATE,
-    start_time TEXT,
-    end_time TEXT,
-    created_at DATE DEFAULT now(),
-    active BOOLEAN DEFAULT true
-);
-
-CREATE TABLE IF NOT EXISTS respondent (
+CREATE TABLE IF NOT EXISTS users (
 	id SERIAL PRIMARY KEY,
-  activity_id INTEGER,
-  respondent_id INTEGER,
-  respondent_name TEXT
+ 	email TEXT,
+	first_name TEXT,
+	last_name TEXT,
+	password TEXT,
+	company TEXT,
+	department TEXT,
+	user_type TEXT
 );
 
 CREATE TABLE IF NOT EXISTS questions (
@@ -32,7 +17,9 @@ CREATE TABLE IF NOT EXISTS questions (
 	question_text TEXT,
 	question_photo  TEXT,
 	user_id INT,
+	vessel TEXT,
 	question_status TEXT,
+	answer_id INT DEFAULT null,
 	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
@@ -46,16 +33,6 @@ CREATE TABLE IF NOT EXISTS replies (
 	updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS users (
-	id SERIAL PRIMARY KEY,
- 	email TEXT,
-	first_name TEXT,
-	last_name TEXT,
-	password TEXT,
-	company TEXT,
-	department TEXT,
-	user_type TEXT
-);
 
 CREATE TABLE IF NOT EXISTS uploads (
     id SERIAL PRIMARY KEY,
