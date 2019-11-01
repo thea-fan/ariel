@@ -204,6 +204,24 @@ a.navbar-brand {
     color: black;
 }
 
+.chat-screen{
+	width: 21.8rem;
+}
+
+.logout-margin{
+    position: absolute;
+    bottom: 20px;
+}
+
+.chat-margin{
+	position: absolute;
+  bottom: 45px;
+}
+
+.pl-20{
+	padding-left: 20px;
+}
+
 a:link {
     text-decoration: none;
 }
@@ -427,12 +445,6 @@ body {
 }
 
 /*----------------------sidebar-menu-------------------------*/
-
-.sidebar-menu {
-    max-height: 25rem;
-    overflow-y: scroll;
-    position: relative;
-}
 
 
 .sidebar-wrapper .sidebar-menu .header-menu span {
@@ -789,4 +801,8 @@ button {
     left: 0;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+
+#chat-send {
+	cursor: pointer;
 }
