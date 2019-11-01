@@ -1,6 +1,7 @@
 const express = require('express');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
+const fs = require('fs');
 
 /**
  * ===================================
@@ -12,16 +13,21 @@ const cookieParser = require('cookie-parser');
 const app = express();
 
 // Set up middleware
+
 app.use(methodOverride('_method'));
 
 app.use(cookieParser());
 
 app.use(express.static('public'));
-
+app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
 
+const multer  = require('multer');
+const upload = multer({
+  dest: './uploads/'
+});
 // Set react-views to be the default view engine
 const reactEngine = require('express-react-views').createEngine();
 

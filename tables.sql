@@ -34,7 +34,11 @@ CREATE TABLE IF NOT EXISTS replies (
 );
 
 
-
+CREATE TABLE IF NOT EXISTS uploads (
+    id SERIAL PRIMARY KEY,
+    url TEXT,
+    reply_id INT REFERENCES replies(reply_id) ON DELETE CASCADE
+);
 
 CREATE OR REPLACE FUNCTION trigger_set_timestamp()
 RETURNS TRIGGER AS $$
@@ -49,7 +53,6 @@ CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON questions
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
-
 
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON replies
