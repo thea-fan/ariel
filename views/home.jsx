@@ -16,14 +16,14 @@ class Home extends React.Component {
 
         let ownershipIndicator = ""
         if (parseInt(question.user_id) === parseInt(this.props.status.user_id)){
-            ownershipIndicator = <i className="fas fa-2x fa-bookmark"></i>
+            ownershipIndicator = <small className= "text-danger font-weight-bold">(By you)</small>
         }
 
         let questionStatus = ""
         if (question.question_status === "open"){
             questionStatus = <span class="mt-3 badge badge-warning">OPEN</span>
         } else if (question.question_status === "resolved"){
-            questionStatus = <span class="mt-3 badge badge-secondary">RESOLVED</span>
+            questionStatus = <span class="mt-3 badge badge-info">RESOLVED</span>
         }
 
         let numOfReplies = question.count;
@@ -39,7 +39,6 @@ class Home extends React.Component {
 
             <li class="home-event-list mb-3 rounded">
                     <div class="row">
-                        {ownershipIndicator}
                         <div class="text-center col-2 p-4 my-auto">
                             <p class="text-uppercase font-weight-bold mb-0">{numOfReplies}</p><small>Replies</small>
                         </div>
@@ -54,10 +53,13 @@ class Home extends React.Component {
                         </div>
                         <div class = " mt-5 d-flex flex-column align-items-center justify-content-center">
                             <small>Asked on {postTime}</small>
-                            <div className="row">
+                            <div className="row mt-1">
                                 <img class="img-responsive img-rounded home-profile-icon pr-2" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
                                 alt="User picture"/>
-                                <a href={userURL}><small>{username}</small></a>
+                                <div>
+                                    <small className="mt-2 d-block small-line-height">{username}</small>
+                                    {ownershipIndicator}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 var React = require("react");
 
-class Navbar extends React.Component {
+class ChatNavbar extends React.Component {
   render() {
 
     return (
@@ -25,35 +25,6 @@ class Navbar extends React.Component {
                 </a>
                 <div class="sidebar-menu">
                     <ul>
-                        <li class="header-menu">
-                            <span>General</span>
-                        </li>
-                        <li class="sidebar">
-                            <a href='/home'>
-                                <i class="fa fa-tachometer-alt"></i>
-                                <span>All Issues</span>
-                                <span class="badge badge-pill badge-danger">3</span>
-                            </a>
-                        </li>
-                        <li class="sidebar">
-                            <a href="/activity/new">
-                                <i class="fa fa-folder"></i>
-                                <span>Add New Issue</span>
-                            </a>
-                        </li>
-                        <li class="sidebar">
-                            <a href="/equipment">
-                                <i class="fas fa-wrench"></i>
-                                <span>Equipment</span>
-                                <span class="badge badge-pill badge-warning">New</span>
-                            </a>
-                        </li>
-                        <li class="sidebar">
-                            <a href="/vessel">
-                                <i class="fas fa-ship"></i>
-                                <span>Vessels</span>
-                            </a>
-                        </li>
                         <li class="sidebar">
                             <a href="/chat">
                                 <i class="far fa-comments"></i>
@@ -77,4 +48,4 @@ class Navbar extends React.Component {
   }
 }
 
-module.exports = Navbar;
+module.exports = ChatNavbar;

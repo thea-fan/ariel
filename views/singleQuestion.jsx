@@ -190,11 +190,11 @@ class SingleQuestion extends React.Component {
                 </div>
                 <div class = "row px-4 pb-4 mb-4 justify-content-center border-bottom">
 
-                    <div class = "mt-4 pr-3">
+                    <div class = "col mt-4 pr-3">
                         <div>
                             <h6 className = "mb-3">{question.question_text.charAt(0).toUpperCase() + question.question_text.slice(1)}</h6>
                             <div>
-                                <img className = "single-question-photo mx-auto" src={question.question_photo}/>
+                                <img className = "single-question-photo mx-auto img-fluid" src={question.question_photo}/>
                             </div>
                         </div>
                     </div>

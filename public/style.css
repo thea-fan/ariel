@@ -193,7 +193,7 @@ a.navbar-brand{
 }
 
 .navbar-logo{
-	max-width: 16vh;
+	max-width: 13vh;
 }
 
 .font-large{
@@ -205,10 +205,8 @@ a.navbar-brand{
   background-color: #d3ebef;
 }
 
-.fa-bookmark{
-		position: absolute;
-    right: 5%;
-    color: #5971f1;
+.small-line-height{
+	line-height: 1px;
 }
 
 .home-activity-name{
@@ -231,7 +229,7 @@ a:link {
 }
 
 .vessel-name{
-	color: #5d7b1d;
+	color: #4455b3;
 }
 
 .edit-question-controls{
@@ -337,7 +335,7 @@ body {
 
 @media screen and (min-width: 768px) {
   .page-wrapper.toggled .page-content {
-    padding-left: 260px;
+    padding-left: 350px;
   }
 }
 /*----------------show sidebar button----------------*/
@@ -355,7 +353,7 @@ body {
 /*----------------sidebar-wrapper----------------*/
 
 .sidebar-wrapper {
-  width: 260px;
+  width: 350px;
   height: 100%;
   max-height: 100%;
   position: fixed;
@@ -394,7 +392,7 @@ body {
 /*--------------------sidebar-header----------------------*/
 
 .sidebar-wrapper .sidebar-header {
-  padding: 20px;
+  padding: 10px;
   overflow: hidden;
 }
 

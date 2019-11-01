@@ -435,6 +435,23 @@ module.exports = (db) => {
         }
     };
 
+//app.GET (chat)
+    let chatController = (request, response) => {
+        db.nei.allEquipment(request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+            }
+            else {
+                let data = {
+                    equipmentList : result.rows,
+                    status : request.cookies
+                }
+
+                response.render('chat',data);
+            }
+        });
+    };
+
 //app.GET (logout)
     let logoutController = (request, response) => {
         response.clearCookie('loggedIn');
@@ -461,6 +478,7 @@ module.exports = (db) => {
     equipment: equipmentController,
     singleEquipment: singleEquipmentController,
     vessel: vesselController,
+    chat: chatController,
     singleVessel: singleVesselController,
     newReply: newReplyController,
     editReply: editReplyController,
