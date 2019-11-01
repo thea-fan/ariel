@@ -58,12 +58,6 @@ body{
 	width: 95%;
 }
 
-.badge-secondary {
-	background-color: #27ada0;
-	text-transform: uppercase;
-}
-
-
 .section-title{
 	margin-top: 2rem;
 	margin-bottom: 1rem;
@@ -236,14 +230,14 @@ a:link {
 	background-color: white;
 }
 
-.edit-question-controls{
-	position: absolute;
-	right: 3%;
-	font-size: smaller;
+.vessel-name{
+	color: #5d7b1d;
 }
 
-.star-solution{
-	color: #ffbd00;
+.edit-question-controls{
+	position: absolute;
+	right: 8%;
+	font-size: smaller;
 }
 
 

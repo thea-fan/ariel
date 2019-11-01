@@ -3,10 +3,11 @@ var Layout = require('./components/layout.jsx');
 var moment = require('moment');
 
 
-class Home extends React.Component {
+class SingleVessel extends React.Component {
   render() {
 
-    const questions = this.props.allQuestions.map(question =>{
+    let questions = this.props.questionList.map(question => {
+
         let username = ""
         if (question.first_name === null){
             username = "Demo User";
@@ -19,18 +20,12 @@ class Home extends React.Component {
             ownershipIndicator = <i className="fas fa-2x fa-bookmark"></i>
         }
 
-        let questionStatus = ""
-        if (question.question_status === "open"){
-            questionStatus = <span class="mt-3 badge badge-warning">OPEN</span>
-        } else if (question.question_status === "resolved"){
-            questionStatus = <span class="mt-3 badge badge-secondary">RESOLVED</span>
-        }
 
         let numOfReplies = question.count;
         let questionURL ="/activity/"+question.qn_id;
         let userURL = "/user/"+question.user_id;
         let questionTitle = question.question_title.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); });
-        let equipmentName = question.equipment.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); });
+        let vessel = question.vessel.toLowerCase().replace(/\b(\w)/g, x => { return x.toUpperCase(); });
         let created_time = question.created_date;
         var postTime = moment(created_time).format('lll');
 
@@ -45,14 +40,12 @@ class Home extends React.Component {
                         </div>
                         <div class="col-7">
                            <a href={questionURL}>
-                            <span className="vessel-name font-weight-bold">MT {question.vessel}</span> - {questionStatus}
+                            <span class="mt-3 badge badge-secondary">{question.question_status}</span>
                             <p class="home-activity-name text-capitalise font-weight-bold my-1">{questionTitle} <br/></p>
                             </a>
-                            <p class ="text-capitalise">
-                                <a href = {"/equipment/"+question.equipment}className="badge badge-equipment">{equipmentName}</a>
-                            </p>
+                            <p class ="text-capitalise"><span className="badge badge-vessel">{vessel}</span></p>
                         </div>
-                        <div class = " mt-5 d-flex flex-column align-items-center justify-content-center">
+                        <div class = " mt-5 d-flex flex-column align-items-center">
                             <small>Asked on {postTime}</small>
                             <div className="row">
                                 <img class="img-responsive img-rounded home-profile-icon pr-2" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
@@ -83,5 +76,4 @@ class Home extends React.Component {
     );
   }
 }
-
-module.exports = Home;
+module.exports = SingleVessel;

@@ -20,6 +20,10 @@ module.exports = (app, allModels) => {
     app.get('/equipment', neiController.equipment);
     app.get('/equipment/:name', neiController.singleEquipment);
 
+//Equipment
+    app.get('/vessel', neiController.vessel);
+    app.get('/equipment/:name', neiController.singleVessel);
+
 //Reply
     app.post('/activity/:id/reply/', neiController.newReply);
     app.put('/activity/:id/reply/:reply_id/edit', neiController.editReply);

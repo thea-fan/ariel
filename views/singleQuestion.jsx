@@ -95,10 +95,10 @@ class SingleQuestion extends React.Component {
             let markAsSolution = ""
             if (parseInt(question.user_id) === parseInt(this.props.status.user_id)){
 
-                if (question.answer_id === reply.id){
+                if (question.answer_id === reply.reply_id){
                     markAsSolution = (
                         <div>
-                            <i data-toggle="modal" data-target={unmarkSolutionButtonID} class="fas fa-star star-solution"></i>
+                            <span class="badge badge-success" data-toggle="modal" data-target={unmarkSolutionButtonID}>Best Solution</span>
                             <SolutionMarkingModals question_id = {this.props.Id} reply_id = {reply.reply_id} unmarkSolution = {unmarkSolutionModalID} />
                         </div>
                     )
@@ -106,8 +106,8 @@ class SingleQuestion extends React.Component {
                 } else {
                     markAsSolution = (
                         <div>
-                            <i data-toggle="modal" data-target={ markSolutionButtonID} class="far fa-star"></i>
-                            <SolutionMarkingModals question_id = {this.props.Id} reply_id = {reply.id} markSolution = {markSolutionModalID} />
+                            <span data-toggle="modal" data-target={ markSolutionButtonID} class="badge badge-secondary">Mark as Solution</span>
+                            <SolutionMarkingModals question_id = {this.props.Id} reply_id = {reply.reply_id} markSolution = {markSolutionModalID} />
                         </div>
                     )
                 }
@@ -153,11 +153,11 @@ class SingleQuestion extends React.Component {
 
                         <div className={'col-10 d-flex flex-column justify-content-center pb-2 border-bottom comment-height'}>
                             <div className="row">
-                                <h6 className="col-11 pb-2">{reply.reply_text.charAt(0).toUpperCase() + reply.reply_text.slice(1)}</h6>
+                                <h6 className="col-10 pb-2">{reply.reply_text.charAt(0).toUpperCase() + reply.reply_text.slice(1)}</h6>
                                 {markAsSolution}
                             </div>
-                             <div className="row pl-3">
-                                <div>
+                             <div className="row">
+                                <div className = "col-10">
                                     <small> Replied on {replyTime}</small>
                                     {updatedTime}
                                 </div>
@@ -178,6 +178,7 @@ class SingleQuestion extends React.Component {
                             alt="User picture"/>
                     </div>
                     <div className = "offset-1 col-10">
+                        <span className="vessel-name font-weight-bold">MT {question.vessel}</span>
                         <h3 class = "text-uppercase font-weight-bold mb-0 pr-2">{question.question_title}</h3>
                         <div className="row">
                             <h6 class="mb-1 text-capitalize pl-3">Equipment: <a href = {"/equipment/"+ question.equipment}> {question.equipment}</a> {questionStatus}</h6>

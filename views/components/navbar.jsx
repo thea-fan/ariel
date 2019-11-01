@@ -31,7 +31,7 @@ class Navbar extends React.Component {
                         <li class="sidebar">
                             <a href='/home'>
                                 <i class="fa fa-tachometer-alt"></i>
-                                <span>Issues</span>
+                                <span>All Issues</span>
                                 <span class="badge badge-pill badge-danger">3</span>
                             </a>
                         </li>
@@ -46,6 +46,12 @@ class Navbar extends React.Component {
                                 <i class="fas fa-wrench"></i>
                                 <span>Equipment</span>
                                 <span class="badge badge-pill badge-warning">New</span>
+                            </a>
+                        </li>
+                        <li class="sidebar">
+                            <a href="/vessel">
+                                <i class="fas fa-ship"></i>
+                                <span>Vessels</span>
                             </a>
                         </li>
                         <li class="sidebar">

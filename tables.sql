@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS questions (
 	question_text TEXT,
 	question_photo  TEXT,
 	user_id INT,
+	vessel TEXT,
 	question_status TEXT,
 	answer_id INT DEFAULT null,
 	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -45,6 +46,12 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE TRIGGER set_timestamp
-BEFORE UPDATE ON questions, replies
+BEFORE UPDATE ON questions
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON replies
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();

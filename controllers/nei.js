@@ -187,6 +187,44 @@ module.exports = (db) => {
     };
 
 
+//app.GET (view all vessels)
+    let vesselController = (request, response) => {
+
+        db.nei.allVessel(request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+            }
+            else {
+                let data = {
+                    vesselList : result.rows,
+                    status : request.cookies
+                }
+
+                response.render('allVessel',data);
+            }
+        });
+    };
+
+//app.GET (view single vessel)
+    let singleVesselController = (request, response) => {
+        let vessel = request.params.name;
+
+        db.nei.singleVessel(vessel, request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+            }
+            else {
+                let data = {
+                    questionList : result.rows,
+                    status : request.cookies
+                }
+
+                response.render('singleVessel',data);
+            }
+        });
+    };
+
+
 
 
 //app.POST (attend activity)
@@ -422,6 +460,8 @@ module.exports = (db) => {
     question: questionController,
     equipment: equipmentController,
     singleEquipment: singleEquipmentController,
+    vessel: vesselController,
+    singleVessel: singleVesselController,
     newReply: newReplyController,
     editReply: editReplyController,
     deleteReply: deleteReplyController,

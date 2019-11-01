@@ -227,7 +227,7 @@ module.exports = (dbPoolInstance) => {
 
     let allEquipment = (cookies, callback) => {
 
-        let query = "SELECT questions.equipment, user_id, count from (select equipment, count (equipment) FROM questions GROUP BY equipment) AS foo INNER JOIN questions ON foo.equipment = questions.equipment LEFT JOIN users ON users.id = user_id ORDER BY created_date DESC";
+        let query = "SELECT questions.equipment, count from (select equipment, count (equipment) FROM questions GROUP BY equipment) AS foo INNER JOIN questions ON foo.equipment = questions.equipment ORDER BY created_date DESC";
 
         dbPoolInstance.query(query, (error, result) => {
 
@@ -244,6 +244,38 @@ module.exports = (dbPoolInstance) => {
 
         let query = "SELECT * from (select question_id, count(reply_text) FROM replies GROUP BY question_id) AS foo INNER JOIN questions ON question_id = qn_id LEFT JOIN users ON users.id = user_id  where equipment = $1 ORDER BY created_date DESC";
         let values = [equipment];
+
+        dbPoolInstance.query(query, values, (error, result) => {
+
+            if( error ){
+                callback(error, null);
+
+            } else {
+                callback(null, result);
+             }
+        });
+    }
+
+    let allVessel = (cookies, callback) => {
+
+        let query = "SELECT questions.vessel, user_id, count from (select vessel, count (vessel) FROM questions GROUP BY vessel) AS foo INNER JOIN questions ON foo.vessel = questions.vessel LEFT JOIN users ON users.id = user_id ORDER BY created_date DESC";
+
+        dbPoolInstance.query(query, (error, result) => {
+
+            if( error ){
+                callback(error, null);
+
+            } else {
+                callback(null, result);
+             }
+        });
+    }
+
+    let singleVessel = (vessel, cookies, callback) => {
+
+        let query = "SELECT * from (select question_id, count(reply_text) FROM replies GROUP BY question_id) AS foo INNER JOIN questions ON question_id = qn_id LEFT JOIN users ON users.id = user_id  where vessel = $1 ORDER BY created_date DESC";
+        let values = [vessel];
+        console.log('9999999', vessel)
 
         dbPoolInstance.query(query, values, (error, result) => {
 
@@ -394,6 +426,8 @@ module.exports = (dbPoolInstance) => {
     deleteQuestion,
     allEquipment,
     singleEquipment,
+    allVessel,
+    singleVessel,
     attendActivity,
     activityOverview,
     attending,
