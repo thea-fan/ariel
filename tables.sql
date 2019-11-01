@@ -1,27 +1,4 @@
 
-
-CREATE TABLE IF NOT EXISTS questions (
-	qn_id SERIAL PRIMARY KEY,
-	question_title TEXT,
-	equipment TEXT,
-	question_text TEXT,
-	question_photo  TEXT,
-	user_id INT REFERENCES users(id),
-	question_status TEXT,
-	answer_id INT REFERENCES replies(id) DEFAULT null,
-	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP NOT NULL DEFAULT NOW()
-);
-
-CREATE TABLE IF NOT EXISTS replies (
-	id SERIAL PRIMARY KEY,
-	replied_user_id REFERENCES users(id),
-	question_id REFERENCES questions(qn_id),
-	reply_text TEXT,
-	reply_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP NOT NULL DEFAULT NOW()
-);
-
 CREATE TABLE IF NOT EXISTS users (
 	id SERIAL PRIMARY KEY,
  	email TEXT,
@@ -32,6 +9,29 @@ CREATE TABLE IF NOT EXISTS users (
 	department TEXT,
 	user_type TEXT
 );
+
+CREATE TABLE IF NOT EXISTS questions (
+	qn_id SERIAL PRIMARY KEY,
+	question_title TEXT,
+	equipment TEXT,
+	question_text TEXT,
+	question_photo  TEXT,
+	user_id INT,
+	question_status TEXT,
+	answer_id INT DEFAULT null,
+	created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS replies (
+	reply_id SERIAL PRIMARY KEY,
+	replied_user_id INT,
+	question_id INT,
+	reply_text TEXT,
+	reply_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
 
 
 

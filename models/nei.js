@@ -249,7 +249,6 @@ module.exports = (dbPoolInstance) => {
 
             if( error ){
                 callback(error, null);
-                console.log(error);
 
             } else {
                 callback(null, result);
@@ -298,6 +297,37 @@ module.exports = (dbPoolInstance) => {
                     }
                 });
             }
+        });
+    }
+
+
+    let deleteAsSolution= (question, cookies, callback) => {
+        let query = "UPDATE questions SET answer_id = $1 WHERE qn_id = $2";
+        let values = [null, question];
+
+        dbPoolInstance.query(query, values, (error, result) => {
+
+            if( error ){
+                callback(error, null);
+
+            } else {
+                callback(null, result);
+             }
+        });
+    }
+
+    let editAsSolution = (reply, question, cookies, callback) => {
+        let query = "UPDATE questions SET answer_id = $1 WHERE qn_id = $2 returning *";
+        let values = [reply, question];
+
+        dbPoolInstance.query(query, values, (error, result) => {
+
+            if( error ){
+                callback(error, null);
+
+            } else {
+                callback(null, result);
+             }
         });
     }
 
@@ -354,6 +384,8 @@ module.exports = (dbPoolInstance) => {
     addReply,
     deleteReply,
     editReply,
+    deleteAsSolution,
+    editAsSolution,
     addNewQuestion,
     getUserDetails,
     showAllQuestions,

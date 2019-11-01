@@ -334,7 +334,12 @@ a:link {
 
 .edit-question-controls{
 	position: absolute;
-	right: 10%;
+	right: 3%;
+	font-size: smaller;
+}
+
+.star-solution{
+	color: #ffbd00;
 }
 
 

@@ -329,6 +329,39 @@ module.exports = (db) => {
 
     };
 
+//app.PUT (Delete reply as solution)
+    let  unmarkAsSolutionController = (request, response) => {
+        let questionID = parseInt(request.params.id);
+
+        db.nei.deleteAsSolution(questionID, request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+
+            } else {
+                response.redirect("/activity/"+ questionID);
+            }
+        });
+
+    };
+
+
+//app.PUT (Update reply as solution)
+    let markAsSolutionController = (request, response) => {
+
+        let replyID = parseInt(request.params.reply_id);
+        let questionID = parseInt(request.params.id);
+
+        db.nei.editAsSolution(replyID, questionID, request.cookies, (err, result) => {
+            if (err) {
+                response.send(err)
+
+            } else {
+                response.redirect("/activity/"+ questionID);
+            }
+        });
+
+    };
+
 //app.POST (new - post new reply)
     let newReplyController = (request, response) =>{
         let questionID = request.params.id;
@@ -392,6 +425,8 @@ module.exports = (db) => {
     newReply: newReplyController,
     editReply: editReplyController,
     deleteReply: deleteReplyController,
+    markAsSolution: markAsSolutionController,
+    unmarkAsSolution: unmarkAsSolutionController,
     newPost: newPostController,
     postNewPost: postNewPostController,
     logout: logoutController,

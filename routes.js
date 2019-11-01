@@ -24,6 +24,8 @@ module.exports = (app, allModels) => {
     app.post('/activity/:id/reply/', neiController.newReply);
     app.put('/activity/:id/reply/:reply_id/edit', neiController.editReply);
     app.delete('/activity/:id/reply/:reply_id', neiController.deleteReply);
+    app.put('/activity/:id/reply/:reply_id/mark/edit', neiController.markAsSolution);
+    app.put('/activity/:id/reply/:reply_id/unmark/edit', neiController.unmarkAsSolution);
 
 //Question
     app.get('/activity/new', neiController.newPost);
