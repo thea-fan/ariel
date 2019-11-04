@@ -35,7 +35,7 @@ class SingleQuestion extends React.Component {
         if (question.question_status === "open"){
             questionStatus = <span class="badge badge-warning">OPEN</span>
         } else if (question.question_status === "resolved"){
-            questionStatus = <span class="badge badge-secondary">RESOLVED</span>
+            questionStatus = <span class="badge badge-info">RESOLVED</span>
         }
 
     let editQuestion = ""

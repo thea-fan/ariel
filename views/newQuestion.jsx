@@ -18,6 +18,12 @@ class newQuestion extends React.Component {
                           </div>
                           <div className={"form-group row"}>
                             <div className="col-2 text-center my-auto">
+                                <label>Vessel</label>
+                            </div>
+                            <input type={"text"} className={"col-6 offset-1 form-field-height"} placeholder={"Vessel Name"} name={'vessel'}  />
+                          </div>
+                          <div className={"form-group row"}>
+                            <div className="col-2 text-center my-auto">
                                 <label>Equipment</label>
                             </div>
                             <input type={"text"} className={"col-6 offset-1 form-field-height"} placeholder={"Equipment Name"} name={'equipment'}  />

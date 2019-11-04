@@ -303,8 +303,8 @@ module.exports = (dbPoolInstance) => {
 
 
     let addNewQuestion = (question, cookies, callback) => {
-        let text = "INSERT INTO questions (user_id, question_title, equipment, question_text, question_photo, question_status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING qn_id";
-        let values =[parseInt(cookies.user_id), question.question_title, question.equipment, question.question_text, question.question_photo, question.question_status]
+        let text = "INSERT INTO questions (user_id, question_title, equipment, question_text, question_photo, vessel, question_status) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING qn_id";
+        let values =[parseInt(cookies.user_id), question.question_title, question.equipment, question.question_text, question.question_photo, question.vessel, question.question_status]
 
         dbPoolInstance.query(text, values, (error, result) => {
             let questionID = result.rows[0].qn_id
@@ -406,7 +406,7 @@ module.exports = (dbPoolInstance) => {
     }
 
     let uploadFile = (fileUrl, replyID, callback) => {
-        let text = "INSERT INTO uploads (url, reply_id) VALUES ($1, $2) RETURNING id";
+        let text = "INSERT INTO uploads (url, reply_ref) VALUES ($1, $2) RETURNING id";
         let values =[fileUrl, replyID];
         dbPoolInstance.query(text, values, (error, result) => {
             if ( error ) {
