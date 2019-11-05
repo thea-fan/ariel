@@ -66,4 +66,5 @@ function changePic () {
     chatPic++;
     $(".chat-screen").attr("src",`/img/${chatPic}.png`);
     $("#chat-textbox").val("");
+    if (chatPic === 5) $("#chat-result").attr("src",`/img/dummy-2.png`);
 }
