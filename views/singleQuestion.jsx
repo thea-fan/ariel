@@ -146,13 +146,14 @@ class SingleQuestion extends React.Component {
                 className="fas fa-file"></i> View Attachment</a>): null;
             return (
                     <div className={'mt-2 row'}>
-                        <div className={'col-2 text-center'}>
-                            <img class="profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                        <div className={'col-3 text-center'}>
+                            <img class="img-fluid rounded-circle p-3" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
                                 alt="User picture"/>
-                            <span class = "text-capitalize">{reply_username}</span>
+                            <p class = "text-capitalize m-0">{reply_username}</p>
+                            <small class = "text-capitalize"> {reply.company} - {reply.user_type}</small>
                         </div>
 
-                        <div className={'col-10 d-flex flex-column justify-content-center py-2 border-bottom comment-height'}>
+                        <div className={'col-9 d-flex flex-column justify-content-center py-2 border-bottom comment-height'}>
                             <div className="row">
                                 <div className="col-10 pb-2">
                                     <h6 className="pb-2">{reply.reply_text.charAt(0).toUpperCase() + reply.reply_text.slice(1)}</h6>

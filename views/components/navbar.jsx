@@ -11,7 +11,7 @@ class Navbar extends React.Component {
                         <img src = "https://i.ibb.co/pzxTKtr/photo-2019-10-16-20-46-11.jpg" className = "mx-auto navbar-logo"/>
                     </a>
                 </div>
-                <a href = '/profile'>
+                <a href = '/home'>
                     <div class="sidebar-header">
                         <div class="user-pic">
                             <img class="profile-icon" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"

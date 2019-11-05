@@ -17,6 +17,8 @@ class Home extends React.Component {
         let ownershipIndicator = ""
         if (parseInt(question.user_id) === parseInt(this.props.status.user_id)){
             ownershipIndicator = <small className= "text-danger font-weight-bold">(By you)</small>
+        } else {
+            ownershipIndicator = <small className= "text-muted font-weight-bold text-capitalize">{question.company} - {question.user_type}</small>
         }
 
         let questionStatus = ""
