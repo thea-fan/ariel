@@ -26,7 +26,7 @@ class ChatNavbar extends React.Component {
                 <div class="sidebar-menu">
                     <ul>
                         <li class="sidebar ">
-                            <a href="/chat" className="pb-0">
+                            <a href="/chat" className="mb-5 border-bottom">
                                 <i class="far fa-comments"></i>
                                 <span>Chat</span>
                             </a>
