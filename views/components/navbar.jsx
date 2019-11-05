@@ -28,6 +28,13 @@ class Navbar extends React.Component {
                         <li class="header-menu">
                             <span>General</span>
                         </li>
+                        <li className="sidebar">
+                            <a href="/chat">
+                                <i className="far fa-comments"></i>
+                                <span>Chat</span>
+                                <span className="badge badge-pill badge-warning">New</span>
+                            </a>
+                        </li>
                         <li class="sidebar">
                             <a href='/home'>
                                 <i class="fa fa-tachometer-alt"></i>
@@ -45,19 +52,12 @@ class Navbar extends React.Component {
                             <a href="/equipment">
                                 <i class="fas fa-wrench"></i>
                                 <span>Equipment</span>
-                                <span class="badge badge-pill badge-warning">New</span>
                             </a>
                         </li>
                         <li class="sidebar">
                             <a href="/vessel">
                                 <i class="fas fa-ship"></i>
                                 <span>Vessels</span>
-                            </a>
-                        </li>
-                        <li class="sidebar">
-                            <a href="/chat">
-                                <i class="far fa-comments"></i>
-                                <span>Chat</span>
                             </a>
                         </li>
                         <li class="sidebar">

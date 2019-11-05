@@ -447,18 +447,7 @@ module.exports = (db) => {
             response.redirect('/home');
 
         }else{
-            db.nei.activityOverview(request.body, (err, result) => {
-                if (err) {
-                    response.send(err)
-                }
-
-                else {
-                    let data = {
-                        allActivities : result.rows
-                    }
-                    response.render('./login/rootLayout', data);
-                }
-            });
+            response.render('./login/rootLayout')
         }
     };
 
