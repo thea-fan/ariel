@@ -20,8 +20,8 @@ class rootLayout extends React.Component {
 
             <body>
 
-                <div className="d-flex align-items-center mt-4">
-                    <div className="container d-flex flex-column align-items-center">
+                <div className="d-flex align-items-center mt-4 pt-5">
+                    <div className="container d-flex flex-column align-items-center pt-5">
                         <img src = "https://i.ibb.co/pzxTKtr/photo-2019-10-16-20-46-11.jpg" className = "mb-3"/>
                         <div className="mt-3 py-5 col-6 d-flex justify-content-center border rounded">
                             <div className="col-md-6 col-md-offset-3">
