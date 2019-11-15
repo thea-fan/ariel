@@ -233,81 +233,6 @@ module.exports = (db) => {
     };
 
 
-
-
-//app.POST (attend activity)
-    let attendController = (request, response) => {
-
-        let activityId = parseInt(request.params.id);
-
-        db.nei.attendActivity(activityId, request.cookies, (err, result) => {
-            if (err) {
-                response.send(err)
-            }
-            else {
-                response.redirect('/profile')
-            }
-        });
-    };
-
-//app.GET (other members profile)
-    let userController = (request, response) => {
-        let userId = parseInt(request.params.id);
-
-        db.nei.otherAttending(userId, (err, result) => {
-            if (err) {
-                response.send(err);
-
-            } else {
-                db.nei.otherPosted(userId, (err, result2) => {
-                    if (err) {
-                        response.send(err)
-
-                    }
-                    else {
-                        let data = {
-                            attending : result.rows,
-                            posted: result2.rows
-                        };
-                        response.render('otherUserProfile', data)
-                    }
-                });
-            }
-        });
-    };
-
-
-//app.GET (user profile)
-    let profileController = (request, response) => {
-
-        if( request.cookies.loggedIn === undefined ){
-            response.render('plsLogin');
-
-        } else {
-            db.nei.attending(request.body, request.cookies, (err, result) => {
-                if (err) {
-                    response.send(err);
-
-                } else {
-                    db.nei.postedActivity(request.body, request.cookies, (err, result2) => {
-                        if (err) {
-                            response.send(err)
-
-                        } else {
-                            let data = {
-                                userInfo : request.cookies,
-                                attending : result.rows,
-                                posted: result2.rows
-                            };
-                            response.render('profile', data)
-                        }
-                    });
-                }
-            });
-        };
-    };
-
-
 //app.GET (new - get new questions)
     let newPostController = (request, response) =>{
         if( request.cookies.loggedIn === undefined ){
@@ -485,12 +410,9 @@ module.exports = (db) => {
   return {
     loginPost: loginPostController,
     registerPost: registerPostController,
-    profile: profileController,
     home: homeController,
     deleteQuestion: deleteQuestionController,
     editQuestion: editQuestionController,
-    user: userController,
-    attend: attendController,
     question: questionController,
     equipment: equipmentController,
     singleEquipment: singleEquipmentController,

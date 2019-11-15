@@ -52,10 +52,4 @@ module.exports = (app, allModels) => {
     app.get('/', neiController.root);
     app.get('/home', neiController.home);
 
-
-    app.post('/activity/:id', neiController.attend);
-    app.get('/user/:id', neiController.user)
-    app.get('/profile', neiController.profile);
-
-
 };

@@ -55,69 +55,6 @@ module.exports = (dbPoolInstance) => {
         });
     }
 
-    let attending = (profile, cookies, callback) => {
-        let query = "select * from respondent inner join activity on activity_id = activity.id inner join users on host_id = users.id where respondent_id = $1 and active = true order by event_date asc";
-
-        let values = [cookies.user_id];
-
-        dbPoolInstance.query(query, values, (error, result) => {
-
-            if( error ){
-                callback(error, null);
-
-            } else {
-                callback(null, result);
-             }
-        });
-    }
-
-    let otherAttending = (userId, callback) => {
-        let query = "select * from respondent inner join activity on activity_id = activity.id inner join users on host_id = users.id where respondent_id = $1 and active = true order by event_date asc";
-
-        let values = [userId];
-
-        dbPoolInstance.query(query, values, (error, result) => {
-
-            if( error ){
-                callback(error, null);
-
-            } else {
-                callback(null, result);
-             }
-        });
-    }
-
-    let otherPosted = (userId, callback) => {
-        let query = "select * from activity where host_id = $1 order by event_date asc";
-
-        let values = [userId];
-
-        dbPoolInstance.query(query, values, (error, result) => {
-
-            if( error ){
-                callback(error, null);
-
-            } else {
-                callback(null, result);
-             }
-        });
-    }
-
-    let postedActivity = (activity, cookies, callback) => {
-        let query = "select * from activity where host_id = $1 order by event_date asc";
-
-        let values = [cookies.user_id];
-
-        dbPoolInstance.query(query, values, (error, result) => {
-
-            if( error ){
-                callback(error, null);
-
-            } else {
-                callback(null, result);
-            }
-        });
-    }
 
     let deleteQuestion = (question, cookies, callback) => {
         let query = "DELETE from questions where qn_id = $1 and user_id = $2 returning *";
@@ -139,20 +76,6 @@ module.exports = (dbPoolInstance) => {
         let values = [question.question_title, question.equipment, question.question_photo, question.question_text, question.question_status, Id, parseInt(cookies.user_id)];
 
         dbPoolInstance.query(query, values, (error, result) => {
-
-            if( error ){
-                callback(error, null);
-
-            } else {
-                callback(null, result);
-             }
-        });
-    }
-
-    let activityOverview = (activity, callback) => {
-        let query = "SELECT activity.start_time, activity.end_time, activity.id, host_id, type, name, max_pax, created_at, event_date, active, email FROM activity INNER JOIN users ON users.id = host_id WHERE active = true ORDER BY event_date ASC limit 6 ";
-
-        dbPoolInstance.query(query, (error, result) => {
 
             if( error ){
                 callback(error, null);
@@ -191,22 +114,6 @@ module.exports = (dbPoolInstance) => {
                     }
                 });
             }
-        });
-    }
-
-    let attendActivity = (activity, cookies, callback) => {
-        let query = "insert into respondent (activity_id, respondent_id, respondent_name) values ($1, $2, $3) returning *";
-
-        let values = [activity, cookies.user_id, cookies.user_name];
-
-        dbPoolInstance.query(query, values, (error, result) => {
-
-            if( error ){
-                callback(error, null);
-
-            } else {
-                callback(null, result);
-             }
         });
     }
 
@@ -433,12 +340,6 @@ module.exports = (dbPoolInstance) => {
     singleEquipment,
     allVessel,
     singleVessel,
-    attendActivity,
-    activityOverview,
-    attending,
-    otherAttending,
-    otherPosted,
-    postedActivity,
     registerUser,
     loginUser,
     uploadFile
