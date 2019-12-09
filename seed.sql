@@ -24,7 +24,7 @@ INSERT INTO questions (question_status, question_title,equipment,question_text,q
 
 
 INSERT INTO replies (replied_user_id,question_id,reply_text) VALUES (1,1,'Ship engineer has bypassed the N2 analyser and use the IG anaylser instead.');
-INSERT INTO replies (user_id,question_id,reply_text) VALUES (2,1,'The scale is not able to use in N2 mode.');
+INSERT INTO replies (replied_user_id,question_id,reply_text) VALUES (2,1,'The scale is not able to use in N2 mode.');
 INSERT INTO replies (replied_user_id,question_id,reply_text) VALUES (1,2,'How old is the vessel?');
 INSERT INTO replies (replied_user_id,question_id,reply_text) VALUES (2,2,'She is 20 years old.');
 INSERT INTO replies (replied_user_id,question_id,reply_text) VALUES (3,3,'This problem can be solved in 2 ways. If there are not so many cracks, doublers can be used. However, the best solution is to replace the cracked chamber, with a new updated one which has a thicker wall of 6mm instead of the standard 4mm. This is a large operation of about 5 working days of 12 Hrs, utilizing all the support from the ship’s crew, dockyard for lifting and delivering and to refit in place. It starts with removing all the upper and inner parts (filters) of the IGG chamber for lifting the top section. All the piping, electronic components and valves above the IGG have to be removed to make room for the lift. The chamber is approximately 3000 mm high, so in many occasions (this depends on how the vessel is built) in the upper deck a hole has to be cut in order to lift the chamber out of the IGG. If the space is made in the upper deck the inner chamber has to be hoisted up by chain hoist and removed.');
