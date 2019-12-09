@@ -20,7 +20,7 @@ class rootLayout extends React.Component {
 
             <body>
 
-                <div className="d-flex align-items-center mt-4 pt-5">
+                <div className="d-flex align-items-center">
                     <div className="container d-flex flex-column align-items-center pt-5">
                         <img src = "/img/final.png" className = "ariel-logo"/>
                         <div className="mt-3 py-5 col-6 d-flex justify-content-center border rounded">
