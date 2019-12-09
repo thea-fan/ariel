@@ -8,7 +8,7 @@ class ChatNavbar extends React.Component {
             <div class="sidebar-content">
                 <div class="sidebar-brand">
                     <a href='/home'>
-                        <img src = "https://i.ibb.co/pzxTKtr/photo-2019-10-16-20-46-11.jpg" className = "mx-auto navbar-logo"/>
+                        <img src = "/img/final.png" className = "mx-auto navbar-logo"/>
                     </a>
                 </div>
                 <a href = '/home'>

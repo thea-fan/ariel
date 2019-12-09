@@ -7,7 +7,6 @@ class AllEquipment extends React.Component {
   render() {
 
     let equipmentArray = [];
-    console.log(this.props.equipmentList);
     this.props.equipmentList.map(item => {
         equipmentArray.push(item)
     });

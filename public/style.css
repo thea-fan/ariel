@@ -2,6 +2,11 @@ body {
     font-family: 'Hind Madurai', sans-serif;
 }
 
+.ariel-logo{
+	max-height: 20rem;
+	margin: none;
+}
+
 .profile-header{
 	background-image: linear-gradient(to right, #E91E63, #FFC107, #FFEB3B);
   -webkit-background-clip: text;
